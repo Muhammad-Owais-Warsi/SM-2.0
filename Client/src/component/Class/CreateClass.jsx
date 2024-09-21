@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faBook, faChalkboardTeacher, faClipboard } from '@fortawesome/free-solid-svg-icons';
 import { UserButton } from '@clerk/clerk-react';
-import { faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons';
-import { faBook } from '@fortawesome/free-solid-svg-icons';
-import { faClipboard } from '@fortawesome/free-solid-svg-icons';
+
+
+
+
 
 function CreateClass() {
     const [classCode, setClassCode] = useState('Nitin Dixit'); // Default code
@@ -98,4 +99,4 @@ function CreateClass() {
     );
 }
 
-export default CreateClass;
+export default CreateClass;

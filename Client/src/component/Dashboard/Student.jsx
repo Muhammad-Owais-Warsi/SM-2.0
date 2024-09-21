@@ -1,17 +1,36 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function Student() {
-  const student = "Student Name";  // Replace with dynamic data if needed
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+
+  const id = queryParams.get("id");
+  console.log(id)
+
+  const [data, setData] = useState({});
+  
+  useEffect(() => {
+    axios.post("http://localhost:3000/student/auth/", {
+      id : id
+    }).then((res) => {
+      console.log(res.data)
+      setData(res.data)
+    })
+  }, [])  // Replace with dynamic data if needed
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-4 bg-black">
+    <>
+    { data ? (<div className="flex flex-col items-center min-h-screen p-4 bg-black">
       
       {/* Container for alignment */}
       <div className="w-full max-w-4xl">
         
         {/* Welcome Section */}
         <div className="w-full p-4 text-center bg-white border-b border-gray-300 rounded-md shadow-md">
-          <h1 className="text-xl font-bold">Welcome {student}</h1> {/* Student name dynamically inserted */}
+          <h1 className="text-xl font-bold">Welcome</h1> {/* Student name dynamically inserted */}
         </div>
         
         {/* Statistics & Schedule Section */}
@@ -41,7 +60,8 @@ function Student() {
       <a href="#" className="block mt-8 text-sm text-center text-blue-500">
         Back to login
       </a>
-    </div>
+    </div>) : (<div>Loading...</div>) }
+    </>
   );
 }
 

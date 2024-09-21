@@ -1,10 +1,28 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function Teacher() {
-  const Teacher = "Teacher Name";  // Replace with dynamic data if needed
+  const location = useLocation();
 
+  const queryParams = new URLSearchParams(location.search);
+
+  const id = queryParams.get("id");
+  console.log(id)
+
+  const [data, setData] = useState({});
+  
+  useEffect(() => {
+    axios.post("http://localhost:3000/teacher/auth/", {
+      id : id
+    }).then((res) => {
+      console.log(res.data)
+      setData(res.data)
+    })
+  }, [])
   return (
-    <div className="flex flex-col items-center min-h-screen p-4 bg-gray-100">
+    <>
+    { data ? (<div className="flex flex-col items-center min-h-screen p-4 bg-gray-100">
       
       {/* Container for alignment */}
       <div className="w-full max-w-4xl">
@@ -41,7 +59,8 @@ function Teacher() {
       <a href="#" className="block mt-8 text-sm text-center text-blue-500">
         Back to login
       </a>
-    </div>
+    </div>) : (<div>Loading...</div>) }
+    </>
   );
 }
 
