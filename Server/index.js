@@ -23,8 +23,8 @@ const createToken = async () => {
   //   roomName = 'quickstart-room2';
   // }
   
-  roomName = createRoom(roomName);
-  console.log(roomName);
+  // roomName = await createRoom(roomName);
+  // console.log(roomName);
   // Identifier to be used for participant.
   
     

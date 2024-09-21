@@ -2,11 +2,11 @@ import pkg from 'pg';
 const { Client } = pkg;
 
 const client = new Client({
-  user: "neil",
-  password: "kennys",
+  user: "test1",
+  password: "test1",
   host: "localhost",
   port: 5432,
-  database: "classroom"
+  database: "test1"
 });
 
 async function connectClient() {

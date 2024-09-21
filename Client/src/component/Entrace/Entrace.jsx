@@ -14,9 +14,11 @@ function SplitPage() {
     navigate("/login");
   }
   const { user } = useUser();
-  const fullname = user.fullName;
-  const email = user.primaryEmailAddress.emailAddress;
-  
+  if(user) {
+    var fullname = user.fullName;
+    var email = user.primaryEmailAddress.emailAddress;
+    
+  }
 
   const Student = () => {
     axios.post("/http:localhost:3000/studentSignUp/", {
@@ -37,6 +39,7 @@ function SplitPage() {
   return (
     <div className="flex h-screen">
       {/* Yellow Half */}
+      <Protect>
       <div className="w-1/2 bg-yellow-500 flex items-center justify-center">
         <Button
           color="danger"
@@ -69,6 +72,7 @@ function SplitPage() {
           <span className="text-4xl font-bold text-black">Teacher</span>
         </Button>
       </div>
+    </Protect>
     </div>
   );
 }
